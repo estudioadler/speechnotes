@@ -16,7 +16,16 @@ const handler = NextAuth({
   pages: {
     signIn: '/login',
   },
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    // Adiciona validação adicional se necessário
+    async session({ session }) {
+      return session
+    },
+    async jwt({ token }) {
+      return token
+    }
+  }
 })
 
 export { handler as GET, handler as POST }
-
