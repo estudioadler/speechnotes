@@ -6,7 +6,6 @@ import { NoteCard } from "@/components/NoteCard/NoteCard";
 import { toast } from "sonner";
 import { SearchInput } from "@/components/SearchInput/SearchInput";
 import { v4 as uuidv4 } from "uuid";
-import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { Header } from "../header";
 import Footer from "../footer";
@@ -104,19 +103,16 @@ export default function Dashboard() {
       : notes;
 
   return (
-    <>
+    <div className="h-screen">
     <Header />
-    <main className="flex-1 container mx-auto flex flex-col items-center justify-center">
-      <div className="flex flex-col items-center justify-center text-center mb-12 w-full max-w-xl">
-        <div className="mb-8 size-14 rounded-md bg-secondary/20 outline outline-1 outline-primary/5 flex items-center justify-center">
-          <Image src="/escrita.svg" alt="Logo" width={36} height={36} className="rotate-12 invert dark:invert-0"/>
-        </div>
-        <div>
+    <main className="container mx-auto px-4 flex flex-col items-center justify-center pt-6 md:pt-12">
+      <div className="flex flex-col items-center justify-center md:text-center py-8 w-full max-w-xl">
+        <div className="px-4">
           <h1 className="text-4xl mb-4">
-            Bem vindo <span className="text-muted-foreground">{session?.user?.name}!</span>
+            Bem vindo! <span className="text-muted-foreground">{session?.user?.name}.</span>
           </h1>
-          <p className="mb-8 text-muted-foreground">
-            Este é um espaço para você organizar suas notas. <br /> Crie notas
+          <p className="mb-8 text-muted-foreground max-w-md">
+            Crie notas
             em <span className="text-primary">áudio</span> ou <span className="text-primary">texto</span> e organize-os com facilidade.
           </p>
         </div>
@@ -145,6 +141,6 @@ export default function Dashboard() {
       </div>
     </main>
     <Footer />
-    </>
+    </div>
   );
 }
